@@ -83,7 +83,75 @@ install_powerlevel10k() {
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${theme_dir}"
 }
 
+install_bat() {
+    if command -v bat &>/dev/null; then
+        echo "bat already installed. Skipping..."
+        return
+    fi
+
+    local version="0.24.0"
+    local arch
+    arch="$(uname -m)"
+    local target=""
+    case "${arch}" in
+        x86_64) target="x86_64-unknown-linux-gnu" ;;
+        aarch64|arm64) target="aarch64-unknown-linux-gnu" ;;
+        *)
+            echo "Unsupported architecture ${arch} for bat installation."
+            return 1
+            ;;
+    esac
+
+    local archive="bat-v${version}-${target}.tar.gz"
+    local url="https://github.com/sharkdp/bat/releases/download/v${version}/${archive}"
+    local tmp_dir
+    tmp_dir="$(mktemp -d)"
+
+    echo "Downloading bat ${version}..."
+    curl -L -o "${tmp_dir}/${archive}" "${url}"
+    tar -xzf "${tmp_dir}/${archive}" -C "${tmp_dir}"
+
+    mkdir -p "${HOME}/.local/bin"
+    install -m 755 "${tmp_dir}/bat-v${version}-${target}/bat" "${HOME}/.local/bin/bat"
+    rm -rf "${tmp_dir}"
+}
+
+install_lsd() {
+    if command -v lsd &>/dev/null; then
+        echo "lsd already installed. Skipping..."
+        return
+    fi
+
+    local version="1.1.5"
+    local arch
+    arch="$(uname -m)"
+    local target=""
+    case "${arch}" in
+        x86_64) target="x86_64-unknown-linux-gnu" ;;
+        aarch64|arm64) target="aarch64-unknown-linux-gnu" ;;
+        *)
+            echo "Unsupported architecture ${arch} for lsd installation."
+            return 1
+            ;;
+    esac
+
+    local archive="lsd-${version}-${target}.tar.gz"
+    local url="https://github.com/lsd-rs/lsd/releases/download/v${version}/${archive}"
+    local tmp_dir
+    tmp_dir="$(mktemp -d)"
+
+    echo "Downloading lsd ${version}..."
+    curl -L -o "${tmp_dir}/${archive}" "${url}"
+    tar -xzf "${tmp_dir}/${archive}" -C "${tmp_dir}"
+
+    mkdir -p "${HOME}/.local/bin"
+    install -m 755 "${tmp_dir}/lsd-${version}-${target}/lsd" "${HOME}/.local/bin/lsd"
+    rm -rf "${tmp_dir}"
+}
+
 install_jetbrains_nerd_font
 install_uv
 install_atuin
 install_powerlevel10k
+install_bat
+install_lsd
