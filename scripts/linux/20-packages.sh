@@ -135,7 +135,7 @@ install_lsd() {
             ;;
     esac
 
-    local archive="lsd-${version}-${target}.tar.gz"
+    local archive="lsd-v${version}-${target}.tar.gz"
     local url="https://github.com/lsd-rs/lsd/releases/download/v${version}/${archive}"
     local tmp_dir
     tmp_dir="$(mktemp -d)"

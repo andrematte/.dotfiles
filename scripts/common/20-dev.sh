@@ -11,13 +11,22 @@ install_uv() {
     curl -LsSf https://astral.sh/uv/install.sh | sh
 }
 
-verify_uvx() {
+ensure_uvx() {
     if command -v uvx &>/dev/null; then
         echo "uvx available."
-    else
-        echo "uvx not found in PATH. Ensure the uv installer added its bin directory to your shell."
+        return
     fi
+
+    if ! command -v uv &>/dev/null; then
+        echo "uv is missing; cannot create uvx helper."
+        return
+    fi
+
+    local bin_dir="${HOME}/.local/bin"
+    mkdir -p "${bin_dir}"
+    ln -sf "$(command -v uv)" "${bin_dir}/uvx"
+    echo "Created uvx shim at ${bin_dir}/uvx."
 }
 
 install_uv
-verify_uvx
+ensure_uvx
