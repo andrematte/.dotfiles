@@ -29,7 +29,7 @@ After that, the installer branches:
 ## Usage
 
 ```sh
-git clone https://github.com/andrematte/macos-personal-setup.git ~/.dotfiles
+git clone https://github.com/andrematte/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./install.sh
 ```
