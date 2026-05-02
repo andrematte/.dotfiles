@@ -49,6 +49,8 @@ if not aerospace_available then
 	return root
 end
 
+sbar.add("event", "aerospace_workspace_change")
+
 local function withWindows(callback)
 	sbar.exec(query_visible_workspaces, function(visible)
 		sbar.exec(query_open_windows, function(windows)
@@ -193,7 +195,16 @@ sbar.exec(query_all_workspaces, function(data)
 	updateWorkspaceMonitor()
 
 	-- Events
+	root:subscribe("aerospace_workspace_change", function()
+		updateWindows()
+		updateWorkspaceMonitor()
+	end)
 	root:subscribe("aerospace_focus_change", updateWindows)
+	root:subscribe("front_app_switched", updateWindows)
+	root:subscribe("system_woke", function()
+		updateWindows()
+		updateWorkspaceMonitor()
+	end)
 	root:subscribe("display_change", function()
 		updateWorkspaceMonitor()
 		updateWindows()

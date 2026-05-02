@@ -184,3 +184,10 @@ automatically-unhide-macos-hidden-apps = false
 #if.app-id = 'org.chromium.Chromium'
 #run = "move-node-to-workspace 4"
 
+[[on-window-detected]]
+    if.app-id = 'net.whatsapp.WhatsApp'
+    run = ['move-node-to-workspace 0']
+
+[[on-window-detected]]
+    if.app-id = 'com.hnc.Discord'
+    run = ['move-node-to-workspace 9']
