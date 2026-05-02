@@ -1,0 +1,35 @@
+title = Ghostty
+
+# Window
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+window-show-tab-bar = auto
+window-padding-x = 8
+window-padding-y = 8
+window-padding-balance = true
+macos-titlebar-style = tabs
+
+# Quick Terminal
+quick-terminal-position = bottom
+quick-terminal-animation-duration = 0.2
+quick-terminal-size = 50%
+quick-terminal-screen = mouse
+quick-terminal-autohide = false
+
+# Font
+font-family = JetBrainsMono Nerd Font
+font-size = 18
+adjust-cell-height = 20%
+
+# Theme
+theme = dark:GitHub Dark,light:GitHub Light
+background-opacity = 0.85
+background-opacity-cells = false
+
+# Shaders
+custom-shader = ~/.config/ghostty/shaders/cursor_blaze.glsl
+custom-shader-animation = true
+
+# Cursor feel
+cursor-style = bar
+cursor-style-blink = false
+mouse-hide-while-typing = true

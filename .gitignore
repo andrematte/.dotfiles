@@ -1,1 +1,15 @@
 .DS_Store
+
+# Sketchybar compiled event provider binaries
+stow/sketchybar/.config/sketchybar/helpers/event_providers/cpu_load/bin/
+stow/sketchybar/.config/sketchybar/helpers/event_providers/network_load/bin/
+stow/sketchybar/.config/sketchybar/helpers/menus/bin/
+
+# AI tool sensitive/runtime files — never commit these
+stow/codex/.codex/auth.json
+stow/codex/.codex/*.sqlite
+stow/codex/.codex/*.sqlite-shm
+stow/codex/.codex/*.sqlite-wal
+stow/codex/.codex/*.jsonl
+stow/claude/.claude/history.jsonl
+stow/claude/.claude/.caveman-active

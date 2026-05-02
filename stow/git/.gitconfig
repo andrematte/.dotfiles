@@ -1,0 +1,10 @@
+[user]
+    name = André Mattos
+    email = 16580598+andrematte@users.noreply.github.com
+[core]
+    editor = code --wait
+    
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true

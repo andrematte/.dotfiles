@@ -4,11 +4,11 @@ set -euo pipefail
 # Configure macOS UI tweaks such as wallpaper, dock speed, and Xcode command line tools.
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-DOTFILES_SETTINGS="$(cd "${SCRIPT_DIR}/../.." && pwd)/settings"
+DOTFILES_SETTINGS="$(cd "${SCRIPT_DIR}/../.." && pwd)/settings/macos"
 
 set_wallpaper() {
     local image_path=""
-    for candidate in "wallpaper.jpg" "wallpaper.png"; do
+    for candidate in "wallpaper.jpeg" "wallpaper.png"; do
         if [[ -f "${DOTFILES_SETTINGS}/${candidate}" ]]; then
             image_path="${DOTFILES_SETTINGS}/${candidate}"
             break

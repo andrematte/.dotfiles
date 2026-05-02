@@ -64,51 +64,10 @@ brew upgrade
 brew upgrade --cask
 brew cleanup
 
-formulas=(
-    "bash"
-    "zsh"
-    "git"
-    "tree"
-    "font-jetbrains-mono-nerd-font"
-    "python"
-    "node"
-    "gifski"
-    # "atuin"
-    "powerlevel10k"
-)
+PACKAGES_DIR="${SCRIPT_DIR}/packages"
 
-apps=(
-    # Apps
-    "chatgpt"
-    "discord"
-    "drawio"
-    "figma"
-    "obsidian"
-    "vlc"
-    "zotero"
-
-    # Development
-    "devtoys"
-    "docker"
-    "insomnia"
-    "iterm2"
-    "visual-studio-code"
-
-    # Tools
-    "alt-tab"
-    "appcleaner"
-    "betterdisplay"
-    "command-x"
-    "coteditor"
-    "hiddenbar"
-    "keka"
-    "keyboardcleantool"
-    "logi-options-plus"
-    "maccy"
-    "rectangle"
-    "shottr"
-    "stats"
-)
+formulas=("${(@f)$(grep -v '^\s*#' "${PACKAGES_DIR}/formulas.txt" | grep -v '^\s*$')}")
+apps=("${(@f)$(grep -v '^\s*#' "${PACKAGES_DIR}/casks.txt" | grep -v '^\s*$')}")
 
 install_package_list "formula" "${formulas[@]}"
 install_package_list "cask" "${apps[@]}"
@@ -123,18 +82,7 @@ chsh -s "${homebrew_zsh}"
 "$(brew --prefix)/bin/git" config --global user.name "${git_user_name}"
 "$(brew --prefix)/bin/git" config --global user.email "${git_user_email}"
 
-appstore=(
-    "1440147259"  # AdGuard for Safari
-    "409183694"   # Keynote
-    "408981434"   # iMovie
-    "1438243180"  # Dark Reader for Safari
-    "409201541"   # Pages
-    "1147396723"  # WhatsApp
-    "747648890"   # Telegram
-    "1233965871"  # ScreenBrush
-    "409203825"   # Numbers
-    "1611378436"  # Pure Paste
-)
+appstore=("${(@f)$(grep -v '^\s*#' "${PACKAGES_DIR}/appstore.txt" | grep -v '^\s*$' | awk '{print $1}')}")
 
 for app in "${appstore[@]}"; do
     echo "Installing ${app} from the App Store..."
@@ -149,10 +97,7 @@ brew cleanup
 echo "Open BetterDisplay and activate license. Press enter to continue..."
 read -r
 
-echo "Open Rectangle and import the settings located in ${REPO_ROOT}/settings/rectangle-config.json. Press enter to continue..."
-read -r
-
-echo "Open iTerm2 and set it up with the settings located at ${REPO_ROOT}/settings/iterm2-config.json. Press enter to continue..."
+echo "Open Rectangle and import the settings located in ${REPO_ROOT}/settings/macos/rectangle-config.json. Press enter to continue..."
 read -r
 
 echo "Open Visual Studio Code, log in and sync settings/extensions. Press enter to continue..."

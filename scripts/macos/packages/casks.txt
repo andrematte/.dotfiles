@@ -1,0 +1,48 @@
+# Apps
+chatgpt
+discord
+drawio
+google-chrome
+google-drive
+obsidian
+vlc
+zotero
+
+# Development
+beekeper-studio
+docker
+insomnia
+ghostty
+visual-studio-code
+
+# AI
+claude
+claude-code
+codex
+
+# Tools
+aerospace
+alt-tab
+betterdisplay
+coteditor
+flux-markdown
+gifski
+hiddenbar
+keka
+keyboardcleantool
+logi-options+
+mediamate
+rectangle
+sf-symbols
+shottr
+stats
+upscayl
+
+# Fonts
+font-hack-nerd-font
+font-jetbrains-mono
+font-jetbrains-mono-nerd-font
+font-sf-mono
+font-sf-mono-nerd-font-ligaturized
+font-sf-pro
+font-sketchybar-app-font
