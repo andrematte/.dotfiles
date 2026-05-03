@@ -18,6 +18,8 @@ for pkg in "${PACKAGES[@]}"; do
         rel="${file#${pkg_dir}/}"
         target="${HOME}/${rel}"
         if [[ -f "${target}" && ! -L "${target}" ]]; then
+            real="$(realpath "${target}" 2>/dev/null || true)"
+            [[ "${real}" == "${REPO_ROOT}"* ]] && continue
             echo "Removing conflicting file: ${target}"
             rm -f "${target}"
         fi
