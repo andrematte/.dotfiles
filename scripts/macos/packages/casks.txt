@@ -9,7 +9,7 @@ vlc
 zotero
 
 # Development
-beekeper-studio
+beekeeper-studio
 docker
 insomnia
 ghostty
