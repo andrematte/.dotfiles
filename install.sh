@@ -5,8 +5,8 @@ REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
 SCRIPTS_ROOT="${REPO_ROOT}/scripts"
 
 run_scripts_in_dir() {
-    local dir="$1"
-    local skip="${2:-}"
+    local dir="$1"; shift
+    local skips=("$@")
     if [[ ! -d "${dir}" ]]; then
         return
     fi
@@ -22,7 +22,10 @@ run_scripts_in_dir() {
     fi
 
     for script in "${scripts[@]}"; do
-        [[ -n "${skip}" && "${script}" == *"${skip}"* ]] && continue
+        local skip
+        for skip in "${skips[@]}"; do
+            [[ "${script}" == *"${skip}"* ]] && continue 2
+        done
         echo "Running ${script}..."
         zsh "${script}"
     done
@@ -31,12 +34,14 @@ run_scripts_in_dir() {
 case "$(uname -s)" in
     Darwin)
         zsh "${SCRIPTS_ROOT}/macos/20-homebrew.sh"
-        run_scripts_in_dir "${SCRIPTS_ROOT}/common"
+        zsh "${SCRIPTS_ROOT}/common/stow.sh"
+        run_scripts_in_dir "${SCRIPTS_ROOT}/common" "stow.sh"
         run_scripts_in_dir "${SCRIPTS_ROOT}/macos" "20-homebrew.sh"
         ;;
     Linux)
-        run_scripts_in_dir "${SCRIPTS_ROOT}/common"
         run_scripts_in_dir "${SCRIPTS_ROOT}/linux"
+        zsh "${SCRIPTS_ROOT}/common/stow.sh"
+        run_scripts_in_dir "${SCRIPTS_ROOT}/common" "stow.sh"
         ;;
     *)
         echo "Unsupported platform $(uname -s). Add scripts under scripts/<platform>/ to continue."
