@@ -1,33 +1,8 @@
-# Personal Setup Scripts
+# Dotfiles
 
-Dotfiles and provisioning scripts that configure my development environment on macOS or Linux. The current layout separates common tasks from OS-specific tasks so each platform can evolve independently.
+macOS development environment. Managed with GNU Stow + shell scripts.
 
-## Repository Layout
-
-```
-scripts/
-  common/   # runs on both platforms – dotfile symlinks, shell setup, dev tooling, folders
-  macos/    # macOS-only automation (wallpaper, Dock tweaks, Homebrew/apps, manual tasks)
-  linux/    # Linux-only automation (placeholder for now)
-settings/   # app preferences (iTerm2, Rectangle, wallpaper, etc.)
-```
-
-Common scripts run first and handle the pieces that should behave the same everywhere:
-
-| Script | Purpose |
-| ------ | ------- |
-| `scripts/common/00-link-dotfiles.sh` | Symlink dotfiles into `$HOME`. |
-| `scripts/common/10-shell.sh` | Ensure Zsh + Oh My Zsh are installed and set Zsh as the default shell. |
-| `scripts/common/15-ohmyzsh-plugins.sh` | Install shared Oh My Zsh community plugins (autosuggestions, syntax highlighting). |
-| `scripts/common/20-dev.sh` | Install shared CLI dev tooling (`uv` + `uvx` via Astral's installer). |
-| `scripts/common/30-folders.sh` | Create the shared folder hierarchy under `~/Programming`. |
-
-After that, the installer branches:
-
-* **macOS** – `scripts/macos/*.sh` configures UI tweaks, installs Homebrew, formulae, casks, Mac App Store apps, and walks through manual post-install tasks.
-* **Linux** – `scripts/linux/10-system.sh` is a placeholder for distro tweaks, while `scripts/linux/20-packages.sh` installs JetBrainsMono Nerd Font, uv, Atuin, Powerlevel10k, and CLI tools like `bat`/`lsd` through upstream installers (no Homebrew required). Extend this directory with package-manager-specific automation for your distro.
-
-## Usage
+## Quick Start
 
 ```sh
 git clone https://github.com/andrematte/.dotfiles.git ~/.dotfiles
@@ -35,4 +10,67 @@ cd ~/.dotfiles
 ./install.sh
 ```
 
-`install.sh` automatically detects the OS, runs every script under `scripts/common/`, and then runs the matching platform directory (`scripts/macos/` or `scripts/linux/`). The scripts are executed in lexicographical order, so prefix new files with numbers (e.g., `40-packages.sh`) to control execution order.
+`install.sh` runs `scripts/common/` then `scripts/macos/` in lexicographical order.
+
+## What Gets Installed
+
+### Stow Packages
+
+Symlinked into `$HOME` via `scripts/common/00-stow.sh`:
+
+| Package | Target |
+| ------- | ------ |
+| `aerospace` | `~/.aerospace.toml` |
+| `atuin` | `~/.config/atuin/` |
+| `borders` | `~/.config/borders/` |
+| `claude` | `~/.claude/` |
+| `codex` | `~/.codex/` |
+| `gh` | `~/.config/gh/` |
+| `ghostty` | `~/.config/ghostty/` |
+| `git` | `~/.gitconfig` |
+| `sketchybar` | `~/.config/sketchybar/` |
+| `ssh` | `~/.ssh/config` |
+| `starship` | `~/.config/starship.toml` |
+| `zsh` | `~/.zshrc`, `~/.zprofile`, etc. |
+
+### Common Scripts
+
+| Script | Purpose |
+| ------ | ------- |
+| `00-stow.sh` | Symlink all stow packages |
+| `10-shell.sh` | Install Oh My Zsh, set Zsh as default shell |
+| `15-ohmyzsh-plugins.sh` | Install autosuggestions + syntax highlighting plugins |
+| `20-dev.sh` | Install `uv` + `uvx` |
+| `30-folders.sh` | Create `~/Programming/` folder hierarchy |
+
+### macOS Scripts
+
+| Script | Purpose |
+| ------ | ------- |
+| `10-system.sh` | Wallpaper, Dock speed, Xcode CLT |
+| `20-homebrew.sh` | Homebrew + formulas + casks + App Store apps |
+
+See `scripts/macos/packages/` for full package lists.
+
+## Post-Install Steps
+
+These require manual action after `install.sh` completes:
+
+1. **Aerospace CLI** — symlink to PATH:
+   ```sh
+   sudo ln -s /Applications/AeroSpace.app/Contents/MacOS/AeroSpace /usr/local/bin/aerospace
+   ```
+2. **BetterDisplay** — activate license
+3. **Rectangle** — import `settings/macos/rectangle-config.json`
+4. **VS Code** — sign in and sync settings/extensions
+5. **Obsidian** — set iCloud vault location
+6. **Zotero** — sign in, enable sync, install plugins (Better BibTeX, Zutilo, Night for Zotero)
+7. **SSH keys** — generate or copy keys, then `ssh-add`
+
+## Notable Tools
+
+- **[AeroSpace](https://github.com/nicehash/AeroSpace)** — tiling window manager, config at `~/.aerospace.toml`
+- **[sketchybar](https://github.com/FelixKratz/SketchyBar)** — custom menu bar, config at `~/.config/sketchybar/`
+- **[borders](https://github.com/FelixKratz/JankyBorders)** — window focus borders
+- **[Starship](https://starship.rs)** — shell prompt
+- **[Atuin](https://atuin.sh)** — shell history sync

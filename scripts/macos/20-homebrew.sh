@@ -79,9 +79,6 @@ if ! grep -qx "${homebrew_zsh}" /etc/shells; then
 fi
 chsh -s "${homebrew_zsh}"
 
-"$(brew --prefix)/bin/git" config --global user.name "${git_user_name}"
-"$(brew --prefix)/bin/git" config --global user.email "${git_user_email}"
-
 appstore=("${(@f)$(grep -v '^\s*#' "${PACKAGES_DIR}/appstore.txt" | grep -v '^\s*$' | awk '{print $1}')}")
 
 for app in "${appstore[@]}"; do
