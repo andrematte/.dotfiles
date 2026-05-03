@@ -17,7 +17,7 @@ quick-terminal-autohide = false
 
 # Font
 font-family = JetBrainsMono Nerd Font
-font-size = 18
+font-size = 16
 adjust-cell-height = 20%
 
 # Theme
@@ -26,7 +26,10 @@ background-opacity = 0.85
 background-opacity-cells = false
 
 # Shaders
-custom-shader = ~/.config/ghostty/shaders/cursor_blaze.glsl
+# custom-shader = ~/.config/ghostty/shaders/dither.glsl
+# custom-shader = ~/.config/ghostty/shaders/just-snow.glsl
+custom-shader = ~/.config/ghostty/shaders/mnoise.glsl
+# custom-shader = ~/.config/ghostty/shaders/starfield-colors.glsl
 custom-shader-animation = true
 
 # Cursor feel

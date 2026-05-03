@@ -30,7 +30,7 @@ local root = sbar.add("item", {
 	icon = {
 		padding_left = 8,
 		padding_right = 9,
-		color = colors.grey,
+		color = colors.with_alpha(colors.white, 0.6),
 		string = icons.switch.on,
 	},
 	label = {
@@ -143,19 +143,33 @@ sbar.exec(query_all_workspaces, function(data)
 				font = { family = settings.font.numbers },
 				color = colors.with_alpha(colors.white, 0.6),
 				highlight_color = colors.white,
+				shadow = {
+					drawing = false,
+					distance = 4,
+					color = colors.shadow,
+				},
 			},
 			label = {
-				padding_right = 10,
+				padding_right = 20,
+				padding_left = 0,
 				color = colors.with_alpha(colors.white, 0.6),
 				highlight_color = colors.white,
 				font = "sketchybar-app-font:Regular:16.0",
 				y_offset = -1,
+				shadow = {
+					drawing = false,
+					distance = 4,
+					color = colors.shadow,
+				},
 			},
 			padding_left = 2,
 			padding_right = 2,
 			background = {
 				color = colors.bg3,
-				height = 28,
+				height = 25,
+				corner_radius = 5,
+				border_color = colors.workspace_border,
+				border_width = 0,
 				drawing = false,
 			},
 			click_script = "aerospace workspace " .. i,
@@ -170,7 +184,11 @@ sbar.exec(query_all_workspaces, function(data)
 				item:set({
 					icon = { highlight = focused == i },
 					label = { highlight = focused == i },
-					background = { drawing = focused == i },
+					background = {
+						drawing = focused == i,
+						color = focused == i and colors.workspace_focused or colors.bg3,
+						border_width = focused == i and 2 or 0,
+					},
 				})
 			end)
 		end)
@@ -185,7 +203,11 @@ sbar.exec(query_all_workspaces, function(data)
 			workspaces[focused]:set({
 				icon = { highlight = true },
 				label = { highlight = true },
-				background = { drawing = true },
+				background = {
+					drawing = true,
+					color = colors.workspace_focused,
+					border_width = 2,
+				},
 			})
 		end
 	end)

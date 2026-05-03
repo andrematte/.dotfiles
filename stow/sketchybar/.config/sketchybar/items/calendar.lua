@@ -10,7 +10,7 @@ local cal = sbar.add("item", {
     padding_left = 8,
     font = {
       style = settings.font.style_map["Black"],
-      size = 12.0,
+      size = 14.0,
     },
   },
   label = {
@@ -18,16 +18,15 @@ local cal = sbar.add("item", {
     padding_right = 8,
     width = 49,
     align = "right",
-    font = { family = settings.font.numbers },
+    font = { family = settings.font.numbers, size = 14.0 },
   },
   position = "right",
   update_freq = 30,
   padding_left = 1,
   padding_right = 1,
   background = {
-    color = colors.bg2,
-    border_color = colors.black,
-    border_width = 1
+    color = colors.transparent,
+    border_width = 0
   },
   click_script = "open -a 'Calendar'"
 })

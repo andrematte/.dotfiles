@@ -3,33 +3,33 @@ local colors = require("colors")
 
 -- Equivalent to the --default domain
 sbar.default({
-  updates = "when_shown",
+  updates = true,
   icon = {
     font = {
-      family = settings.font.text,
+      family = "Hack Nerd Font",
       style = settings.font.style_map["Bold"],
-      size = 14.0
+      size = 17.0
     },
     color = colors.white,
-    padding_left = settings.paddings,
-    padding_right = settings.paddings,
+    padding_left = 4,
+    padding_right = 4,
     background = { image = { corner_radius = 9 } },
   },
   label = {
     font = {
       family = settings.font.text,
       style = settings.font.style_map["Semibold"],
-      size = 13.0
+      size = 17.0
     },
     color = colors.white,
-    padding_left = settings.paddings,
-    padding_right = settings.paddings,
+    padding_left = 4,
+    padding_right = 4,
   },
   background = {
-    height = 28,
-    corner_radius = 9,
-    border_width = 2,
-    border_color = colors.bg2,
+    height = 25,
+    corner_radius = 5,
+    border_width = 0,
+    border_color = colors.workspace_border,
     image = {
       corner_radius = 9,
       border_color = colors.grey,

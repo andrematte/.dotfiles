@@ -49,3 +49,6 @@ url = "https://mcp.context7.com/mcp"
 [mcp_servers.context7.http_headers]
 # Set via environment or add manually after stowing — do not commit the real key
 CONTEXT7_API_KEY = ""
+
+[projects."/Users/andrematte/.dotfiles"]
+trust_level = "trusted"
