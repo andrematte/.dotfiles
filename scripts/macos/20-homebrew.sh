@@ -84,7 +84,7 @@ appstore=("${(@f)$(grep -v '^\s*#' "${PACKAGES_DIR}/appstore.txt" | grep -v '^\s
 
 for app in "${appstore[@]}"; do
     echo "Installing ${app} from the App Store..."
-    mas install "${app}"
+    mas install "${app}" || echo "Warning: failed to install ${app}, skipping..."
 done
 
 brew update
