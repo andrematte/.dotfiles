@@ -7,7 +7,6 @@ gifski
 git
 lazydocker
 lsd
-mas
 node
 mole
 ollama

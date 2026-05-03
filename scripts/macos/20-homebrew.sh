@@ -80,12 +80,9 @@ if ! grep -qx "${homebrew_zsh}" /etc/shells; then
 fi
 chsh -s "${homebrew_zsh}"
 
-appstore=("${(@f)$(grep -v '^\s*#' "${PACKAGES_DIR}/appstore.txt" | grep -v '^\s*$' | awk '{print $1}')}")
-
-for app in "${appstore[@]}"; do
-    echo "Installing ${app} from the App Store..."
-    mas install "${app}" || echo "Warning: failed to install ${app}, skipping..."
-done
+echo "Install the following apps from the App Store, then press enter to continue..."
+grep -v '^\s*#' "${PACKAGES_DIR}/appstore.txt" | grep -v '^\s*$' | awk '{$1=""; print substr($0,2)}' | sed 's/^#[[:space:]]*//'
+read -r
 
 brew update
 brew upgrade
