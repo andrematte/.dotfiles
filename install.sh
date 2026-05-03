@@ -6,6 +6,7 @@ SCRIPTS_ROOT="${REPO_ROOT}/scripts"
 
 run_scripts_in_dir() {
     local dir="$1"
+    local skip="${2:-}"
     if [[ ! -d "${dir}" ]]; then
         return
     fi
@@ -21,18 +22,20 @@ run_scripts_in_dir() {
     fi
 
     for script in "${scripts[@]}"; do
+        [[ -n "${skip}" && "${script}" == *"${skip}"* ]] && continue
         echo "Running ${script}..."
         zsh "${script}"
     done
 }
 
-run_scripts_in_dir "${SCRIPTS_ROOT}/common"
-
 case "$(uname -s)" in
     Darwin)
-        run_scripts_in_dir "${SCRIPTS_ROOT}/macos"
+        zsh "${SCRIPTS_ROOT}/macos/20-homebrew.sh"
+        run_scripts_in_dir "${SCRIPTS_ROOT}/common"
+        run_scripts_in_dir "${SCRIPTS_ROOT}/macos" "20-homebrew.sh"
         ;;
     Linux)
+        run_scripts_in_dir "${SCRIPTS_ROOT}/common"
         run_scripts_in_dir "${SCRIPTS_ROOT}/linux"
         ;;
     *)
