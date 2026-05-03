@@ -26,7 +26,6 @@ alt-tab
 betterdisplay
 coteditor
 xykong/tap/flux-markdown
-gifski
 hiddenbar
 keka
 keyboardcleantool
