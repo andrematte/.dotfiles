@@ -21,11 +21,11 @@ claude-code
 codex
 
 # Tools
-aerospace
+nikitabobko/tap/aerospace
 alt-tab
 betterdisplay
 coteditor
-flux-markdown
+xykong/tap/flux-markdown
 gifski
 hiddenbar
 keka

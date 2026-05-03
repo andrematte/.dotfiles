@@ -16,8 +16,9 @@ install_homebrew() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     if [[ -x "/opt/homebrew/bin/brew" ]]; then
-        echo "Configuring Homebrew in PATH for Apple Silicon Mac..."
-        export PATH="/opt/homebrew/bin:${PATH}"
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [[ -x "/usr/local/bin/brew" ]]; then
+        eval "$(/usr/local/bin/brew shellenv)"
     fi
 
     if ! command -v brew &>/dev/null; then
@@ -27,11 +28,11 @@ install_homebrew() {
 }
 
 is_formula_installed() {
-    brew list --formula | grep -qx "$1"
+    brew list --formula | grep -qx "${1##*/}"
 }
 
 is_cask_installed() {
-    brew list --cask | grep -qx "$1"
+    brew list --cask | grep -qx "${1##*/}"
 }
 
 install_package_list() {
