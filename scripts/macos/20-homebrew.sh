@@ -73,6 +73,9 @@ apps=("${(@f)$(grep -v '^\s*#' "${PACKAGES_DIR}/casks.txt" | grep -v '^\s*$')}")
 install_package_list "formula" "${formulas[@]}"
 install_package_list "cask" "${apps[@]}"
 
+brew services start sketchybar
+brew services start borders
+
 echo "Changing default shell to Homebrew zsh"
 homebrew_zsh="$(brew --prefix)/bin/zsh"
 if ! grep -qx "${homebrew_zsh}" /etc/shells; then

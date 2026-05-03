@@ -10,5 +10,19 @@ if ! command -v stow &>/dev/null; then
     exit 1
 fi
 
-stow --dir="${STOW_DIR}" --target="${HOME}" --restow git zsh atuin ghostty starship claude codex aerospace borders sketchybar ssh gh
+PACKAGES=(git zsh atuin ghostty starship claude codex aerospace borders sketchybar ssh gh)
+
+for pkg in "${PACKAGES[@]}"; do
+    pkg_dir="${STOW_DIR}/${pkg}"
+    while IFS= read -r file; do
+        rel="${file#${pkg_dir}/}"
+        target="${HOME}/${rel}"
+        if [[ -f "${target}" && ! -L "${target}" ]]; then
+            echo "Removing conflicting file: ${target}"
+            rm -f "${target}"
+        fi
+    done < <(find "${pkg_dir}" -type f)
+done
+
+stow --dir="${STOW_DIR}" --target="${HOME}" --restow "${PACKAGES[@]}"
 echo "Stow complete."
