@@ -25,6 +25,7 @@ local query_focused_workspace = "aerospace list-workspaces --focused"
 local query_open_windows = "aerospace list-windows --monitor all --format '%{workspace}%{app-name}' --json"
 
 local root = sbar.add("item", {
+	drawing = false,
 	padding_left = -3,
 	padding_right = 0,
 	icon = {
