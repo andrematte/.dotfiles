@@ -10,7 +10,7 @@ options=(
   inactive_color="$transparent"
   hidpi=on
   style=round
-  width=6.0
+  width=4.0
 #   blacklist="Screen Studio"
 )
 
