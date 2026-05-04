@@ -10,7 +10,7 @@ local battery = sbar.add("item", "widgets.battery", {
       size = 19.0,
     }
   },
-  label = { font = { family = settings.font.numbers, size = 14.0 } },
+  label = { drawing = false },
   update_freq = 180,
   popup = { align = "center" }
 })
