@@ -1,6 +1,7 @@
 atuin
 bash
 bat
+music-presence
 FelixKratz/formulae/borders
 gh
 gifski
