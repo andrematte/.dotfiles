@@ -1,7 +1,8 @@
 title = Ghostty
 
 # Window
-keybind = global:ctrl+grave_accent=toggle_quick_terminal
+keybind = global:cmd+ctrl+n=toggle_quick_terminal
+keybind = global:cmd+alt+ctrl+n=new_window
 window-show-tab-bar = auto
 window-padding-x = 8
 window-padding-y = 8
@@ -26,10 +27,11 @@ background-opacity = 0.85
 background-opacity-cells = false
 
 # Shaders
-custom-shader = ~/.config/ghostty/shaders/mnoise.glsl
-# custom-shader = ~/.config/ghostty/shaders/sparks-from-fire.glsl
+# custom-shader = ~/.config/ghostty/shaders/mnoise.glsl
+custom-shader = ~/.config/ghostty/shaders/sparks-from-fire.glsl
 # custom-shader = ~/.config/ghostty/shaders/just-snow.glsl
 # custom-shader = ~/.config/ghostty/shaders/starfield-colors.glsl
+# custom-shader = ~/.config/ghostty/shaders/inside-the-matrix.glsl
 custom-shader-animation = true
 
 # Cursor feel
