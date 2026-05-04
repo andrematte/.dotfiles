@@ -26,6 +26,7 @@ alias tree='ls --tree --depth 2'
 alias python='python3'
 alias pip='pip3'
 alias cat='bat'
+alias ld='lazydocker'
 
 if command -v atuin &>/dev/null; then
   eval "$(atuin init zsh)"
