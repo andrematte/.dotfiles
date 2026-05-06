@@ -28,9 +28,9 @@ background-opacity-cells = false
 
 # Shaders
 # custom-shader = ~/.config/ghostty/shaders/mnoise.glsl
-custom-shader = ~/.config/ghostty/shaders/sparks-from-fire.glsl
+# custom-shader = ~/.config/ghostty/shaders/sparks-from-fire.glsl
 # custom-shader = ~/.config/ghostty/shaders/just-snow.glsl
-# custom-shader = ~/.config/ghostty/shaders/starfield-colors.glsl
+# custom-shader = ~/.config/ghostty/shaders/starfield.glsl
 # custom-shader = ~/.config/ghostty/shaders/inside-the-matrix.glsl
 custom-shader-animation = true
 
