@@ -27,6 +27,7 @@ alias python='python3'
 alias pip='pip3'
 alias cat='bat'
 alias ld='lazydocker'
+alias oc='opencode .'
 
 if command -v atuin &>/dev/null; then
   eval "$(atuin init zsh)"
@@ -60,3 +61,8 @@ export PATH="$PATH:/Users/andrematte/.cache/lm-studio/bin"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 [ -s "/Users/andrematte/.bun/_bun" ] && source "/Users/andrematte/.bun/_bun"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/andrematte/.lmstudio/bin"
+# End of LM Studio CLI section
+
