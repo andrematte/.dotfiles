@@ -1,4 +1,4 @@
-title = Ghostty
+# title = Ghostty
 
 # Window
 keybind = global:cmd+ctrl+n=toggle_quick_terminal
