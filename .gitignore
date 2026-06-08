@@ -13,3 +13,5 @@ stow/codex/.codex/*.sqlite-wal
 stow/codex/.codex/*.jsonl
 stow/claude/.claude/history.jsonl
 stow/claude/.claude/.caveman-active
+stow/ssh/.ssh/known_hosts
+stow/ssh/.ssh/known_hosts.old
