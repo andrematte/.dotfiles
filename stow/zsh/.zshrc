@@ -1,6 +1,19 @@
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="/opt/homebrew/bin:$PATH"
 
+# Repair zsh's autoload path before Oh My Zsh or VS Code shell integration
+# call functions like compinit, is-at-least, and add-zsh-hook.
+if [[ -n "$ZSH_VERSION" ]]; then
+  if [[ -d /opt/homebrew/share/zsh/functions ]]; then
+    fpath=(/opt/homebrew/share/zsh/functions $fpath)
+  elif [[ -d /usr/share/zsh/functions ]]; then
+    fpath=(/usr/share/zsh/functions $fpath)
+  fi
+
+  typeset -gaU fpath
+  typeset +x FPATH
+fi
+
 if [[ -d "$HOME/.local/bin" ]]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
@@ -66,3 +79,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$PATH:/Users/andrematte/.lmstudio/bin"
 # End of LM Studio CLI section
 
+# opencode
+export PATH=/Users/andrematte/.opencode/bin:$PATH
