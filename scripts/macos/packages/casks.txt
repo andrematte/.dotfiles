@@ -5,6 +5,7 @@ drawio
 google-chrome
 google-drive
 obsidian
+steam
 vlc
 zotero
 
@@ -19,6 +20,9 @@ visual-studio-code
 claude
 claude-code
 codex
+codex-app
+lm-studio
+opencode-desktop
 
 # Tools
 nikitabobko/tap/aerospace
@@ -26,16 +30,14 @@ alt-tab
 betterdisplay
 coteditor
 xykong/tap/flux-markdown
-hiddenbar
 keka
-keyboardcleantool
 logi-options+
-mediamate
+quickrecorder
 rectangle
 sf-symbols
 shottr
 stats
-upscayl
+vorssaint
 
 # Fonts
 font-hack-nerd-font
