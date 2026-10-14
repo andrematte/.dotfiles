@@ -11,7 +11,7 @@ options=(
   hidpi=on
   style=round
   width=4.0
-#   blacklist="Screen Studio"
+  blacklist="Steam"
 )
 
 borders "${options[@]}"

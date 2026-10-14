@@ -1,6 +1,10 @@
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
+# Config version for compatibility and deprecations
+# See: https://nikitabobko.github.io/AeroSpace/guide#config-version
+config-version = 2
+
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
@@ -41,6 +45,11 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
 automatically-unhide-macos-hidden-apps = false
+
+# List of workspaces that should stay alive even when they contain no windows.
+# In config-version 2 the fallback is empty; this preserves the previous
+# behavior of keeping all 10 bound workspaces persistent (so sketchybar shows them).
+persistent-workspaces = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -191,3 +200,23 @@ automatically-unhide-macos-hidden-apps = false
 [[on-window-detected]]
     if.app-id = 'com.hnc.Discord'
     run = ['move-node-to-workspace 9']
+
+[[on-window-detected]]
+    if.app-id = 'com.valvesoftware.steam'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.finder'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.systempreferences'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.mitchellh.ghostty'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.vorssaint.utils'
+    run = 'layout floating'
